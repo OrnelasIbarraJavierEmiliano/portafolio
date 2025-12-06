@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Películas Populares — Sitio Web</title>
+  <meta name="description" content="Sitio web sencillo sobre películas, hecho solo con HTML y CSS" />
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:#0e0e0e;color:#f5f5f5;line-height:1.5;padding:20px}
+    header{text-align:center;margin-bottom:30px}
+    header h1{font-size:2em;color:#ff6b6b}
+    nav a{color:#f5f5f5;text-decoration:none;margin:0 10px;font-weight:bold}
+    nav a:hover{color:#ff6b6b}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .card{background:#1e1e1e;padding:15px;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,0.5)}
+    .card img{width:100%;border-radius:10px;margin-bottom:10px}
+    .card h3{color:#ff6b6b;margin-bottom:5px}
+    footer{text-align:center;margin-top:30px;color:#bbb;font-size:14px}
+    @media (max-width:600px){header h1{font-size:1.5em}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Películas Populares</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#estrenos">Estrenos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio">
+      <h2 style="margin-bottom:15px;color:#ff6b6b">Cartelera destacada</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="9OYC68a3NH5ySyTBjLQDzxhApMi.jpg" alt="Película 1">
+          <h3>Rapidos y Furiosos: Reto Tokyo</h3>
+          <p>Sean Boswell reta a su rival a una carrera de autos callejera e ilegal. Para evitar la cárcel, lo envían con su padre a Tokio, donde descubre una divertida y peligrosa forma de competir. Además, se enamora de la novia de su contrincante.</p>
+        </div>
+        <div class="card">
+          <img src="a08n1esp-1.jpg" alt="Película 2">
+          <h3>Letras Explicitas</h3>
+          <p>La historia de como seis chicos de Compton (Arabian Prince, DJ Yella, Dr. Dre, Eazy-E, Ice Cube y MC Ren), uno de los barrios más peligrosos de Los Ángeles, formaron el grupo de rap N.W.A. y revolucionaron no sólo el mundo de la música, sino toda la sociedad estadounidense a finales de los años 80.</p>
+        </div>
+        <div class="card">
+          <img src="dWHJLtK12apkto5tELM9tB3PMZ2.jpg" alt="Película 3">
+          <h3>Rico o Muerto.</h3>
+          <p>Un huérfano, un chico de la calle, se convierte en un poderoso traficante de drogas, pero lo intenta dejar todo para perseguir una carrera musical.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="estrenos" style="margin-top:40px">
+      <h2 style="margin-bottom:15px;color:#ff6b6b">Próximos Estrenos</h2>
+      <div class="grid">
+        <div class="card">
+          <img src="1030168-tron-ares-disney-devoile-une-premiere-image-du-prochain-chapitre-de-la-saga-iconique.jpg" alt="Estreno 1">
+          <h3>Tron Ares</h3>
+          <p>La franquicia Tron es algo que se ha alojado en la mente de los fanáticos durante décadas. Esta historia, que dio comienzo con Jeff Bridges en el papel protagoniza de la icónica cinta de 1982, continuó en TRON: El legado (2010) con Garrett Hedlund como Sam, un joven que está investigando la desaparición de su padre veinte años antes, una búsqueda que finalmente lo lleva a un mundo digital aislado creado por su padre después de los eventos de la primera película. En Tron 3, esta valiosa historia de Disney llega una vez más, esta vez bajo la dirección de Garth Davis, con un guion de Jesse Wigutow, y protagonizada por el ganador del Oscar Jared Leto.</p>
+        </div>
+        <div class="card">
+          <img src="Doomsday.jpg" alt="Estreno 2">
+          <h3>Avengers: Doomsday</h3>
+          <p>Nathaniel Richards, también conocido como Kang el Conquistador, ya causó varios problemas durante su aparición en la primera temporada de la serie Loki (2020), ahora se convierte en el villano principal en Avengers: The Kang Dynasty, un historia basada en el comic Dinastía Kang en el que este antiguo y mortífero enemigo llega con su hijo Marcus con la intención de conquistar el planeta. Y aunque Kang tiene éxito temporalmente, los Vengadores llegaran para ponerle fin a su malvado plan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" style="margin-top:40px">
+      <h2 style="margin-bottom:15px;color:#ff6b6b">Contacto</h2>
+      <p>¿Tienes una recomendación o comentario? Escríbenos:</p>
+      <form style="margin-top:10px;display:grid;gap:10px;max-width:400px">
+        <input type="text" placeholder="Nombre" style="padding:10px;border-radius:5px;border:none">
+        <input type="email" placeholder="Correo electrónico" style="padding:10px;border-radius:5px;border:none">
+        <textarea placeholder="Mensaje" rows="4" style="padding:10px;border-radius:5px;border:none"></textarea>
+        <button type="button" style="padding:10px;background:#ff6b6b;color:#fff;border:none;border-radius:5px;font-weight:bold;cursor:pointer">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+     2025 Películas Populares
+  </footer>
+</body>
+</html>

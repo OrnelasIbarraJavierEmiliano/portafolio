@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tablón de Trabajos</title>
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background:#f3f3f3;
+        margin:0; padding:20px;
+    }
+    h2{ color:#333; }
+    .card{
+        background:white; padding:15px; border-radius:10px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:20px;
+    }
+    input, textarea, select{
+        width:100%; padding:10px; margin:8px 0;
+        border:1px solid #ccc; border-radius:5px;
+    }
+    button{
+        background:#007bff; color:white; border:none;
+        padding:10px 15px; border-radius:5px;
+        cursor:pointer; margin-top:10px;
+    }
+    button:hover{ background:#0056b3; }
+    .job{
+        border-left:5px solid #007bff; padding-left:10px;
+        margin-bottom:15px;
+    }
+    .notification{
+        background:#e9ffe8; border-left:5px solid #2ecc71;
+        padding:10px; margin:10px 0; border-radius:5px;
+    }
+</style>
+</head>
+<body>
+
+<h1>📌 Tablón de Trabajos</h1>
+
+<!-- REGISTRO DE TRABAJO -->
+<div class="card">
+    <h2>Registrar Trabajo</h2>
+    <input type="text" id="titulo" placeholder="Título del trabajo">
+    <textarea id="descripcion" placeholder="Descripción del trabajo"></textarea>
+    <input type="email" id="correoCreador" placeholder="Correo del creador del trabajo">
+    <button onclick="registrarTrabajo()">Registrar</button>
+</div>
+
+<!-- PANEL DEL ADMINISTRADOR -->
+<div class="card">
+    <h2>Panel del Administrador</h2>
+    <div id="admin-list"></div>
+</div>
+
+<!-- LISTADO DE TRABAJOS PUBLICADOS -->
+<div class="card">
+    <h2>Trabajos Publicados</h2>
+    <div id="trabajos-list"></div>
+</div>
+
+<!-- NOTIFICACIONES -->
+<div class="card">
+    <h2>Notificaciones</h2>
+    <div id="notificaciones"></div>
+</div>
+
+<script>
+    let trabajosPendientes = [];
+    let trabajosPublicados = [];
+
+    // Registrar un trabajo (pendiente de aprobación)
+    function registrarTrabajo(){
+        let titulo = document.getElementById("titulo").value;
+        let descripcion = document.getElementById("descripcion").value;
+        let correo = document.getElementById("correoCreador").value;
+
+        if(!titulo || !descripcion || !correo){
+            alert("Por favor completa todos los campos.");
+            return;
+        }
+
+        let trabajo = {
+            id: Date.now(),
+            titulo,
+            descripcion,
+            creador: correo,
+            candidatos: []
+        };
+
+        trabajosPendientes.push(trabajo);
+        mostrarPendientes();
+        alert("Trabajo registrado. Esperando aprobación del administrador.");
+    }
+
+    // Mostrar trabajos pendientes en el panel del admin
+    function mostrarPendientes(){
+        let cont = document.getElementById("admin-list");
+        cont.innerHTML = "";
+
+        trabajosPendientes.forEach(t => {
+            cont.innerHTML += `
+                <div class="job">
+                    <strong>${t.titulo}</strong><br>
+                    ${t.descripcion}<br><br>
+                    <button onclick="aprobarTrabajo(${t.id})">Aprobar</button>
+                </div>
+            `;
+        });
+    }
+
+    // Aprobar el trabajo
+    function aprobarTrabajo(id){
+        let trabajo = trabajosPendientes.find(t=>t.id===id);
+
+        trabajosPublicados.push(trabajo);
+        trabajosPendientes = trabajosPendientes.filter(t=>t.id!==id);
+
+        mostrarPendientes();
+        mostrarTrabajos();
+
+        notificar(`El administrador aceptó tu trabajo: ${trabajo.titulo}`, trabajo.creador);
+    }
+
+    // Mostrar trabajos publicados
+    function mostrarTrabajos(){
+        let cont = document.getElementById("trabajos-list");
+        cont.innerHTML = "";
+
+        trabajosPublicados.forEach(t => {
+            cont.innerHTML += `
+                <div class="job">
+                    <strong>${t.titulo}</strong><br>
+                    ${t.descripcion}<br><br>
+                    <input type="email" id="post-${t.id}" placeholder="Tu correo">
+                    <button onclick="postular(${t.id})">Postularme</button>
+                </div>
+            `;
+        });
+    }
+
+    // Postularse
+    function postular(id){
+        let trabajo = trabajosPublicados.find(t=>t.id===id);
+        let correo = document.getElementById(`post-${id}`).value;
+
+        if(!correo){
+            alert("Ingresa tu correo para postularte.");
+            return;
+        }
+
+        trabajo.candidatos.push({correo, estado: "pendiente"});
+
+        notificar(`Un candidato se postuló a tu trabajo: ${trabajo.titulo}`, trabajo.creador);
+
+        alert("Postulación enviada correctamente.");
+    }
+
+    // Simulación de notificaciones
+    function notificar(mensaje, correo){
+        let div = document.getElementById("notificaciones");
+        div.innerHTML += `
+            <div class="notification">
+                <strong>Para:</strong> ${correo}<br>
+                ${mensaje}
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>

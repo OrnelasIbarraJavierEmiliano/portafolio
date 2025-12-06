@@ -1,0 +1,28 @@
+body{
+        font-family: Arial, sans-serif;
+        background:#f3f3f3;
+        margin:0; padding:20px;
+    }
+    h2{ color:#333; }
+    .card{
+        background:white; padding:15px; border-radius:10px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.1); margin-bottom:20px;
+    }
+    input, textarea, select{
+        width:100%; padding:10px; margin:8px 0;
+        border:1px solid #ccc; border-radius:5px;
+    }
+    button{
+        background:#007bff; color:white; border:none;
+        padding:10px 15px; border-radius:5px;
+        cursor:pointer; margin-top:10px;
+    }
+    button:hover{ background:#0056b3; }
+    .job{
+        border-left:5px solid #007bff; padding-left:10px;
+        margin-bottom:15px;
+    }
+    .notification{
+        background:#e9ffe8; border-left:5px solid #2ecc71;
+        padding:10px; margin:10px 0; border-radius:5px;
+    }
