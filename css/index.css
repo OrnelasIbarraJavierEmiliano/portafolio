@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.content{
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    overflow: hidden;
+}
+.content div:first-child{
+    position: relative;
+    width: 50%;
+    height: 100%;
+
+    background-color: #ffffff;
+    box-shadow: 0 0 10px #b1b1b1;
+    z-index: 10000;
+}
+.content div:last-child{
+    width: 50%;
+    height: 100%;
+
+    background-color: #edf1f4;
+}
